@@ -1,4 +1,5 @@
 import { ThemeToggle } from '@/components/theme-toggle';
+import { ButtonWithTooltip } from '@/components/tooltip-button';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,7 +16,33 @@ export function Navbar() {
             className="rounded-lg"
           />
         </Link>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <ButtonWithTooltip
+            tooltipText="Buy me a coffee"
+            tooltipProps={{ side: 'bottom' }}
+            className="h-8 w-8 rounded-full bg-background"
+            variant="outline"
+            size="icon"
+            asChild
+          >
+            <Link
+              href="https://buymeacoffee.com/reuelnixon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center"
+            >
+              <Image
+                src="/buymeacoffee.svg"
+                alt="Buy Me a Coffee"
+                width={18}
+                height={18}
+                className="dark:invert"
+              />
+              <span className="sr-only">Buy me a coffee</span>
+            </Link>
+          </ButtonWithTooltip>
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );
