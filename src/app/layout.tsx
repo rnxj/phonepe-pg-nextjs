@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'PhonePe Payment Gateway | Next.js Integration',
   description:
     'Secure payment processing with PhonePe Payment Gateway integration built with Next.js, TypeScript, and modern React UI',
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  ),
   openGraph: {
     title: 'PhonePe Payment Gateway | Next.js Integration',
     description:

@@ -5,11 +5,22 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
-export default function PaymentResult() {
+interface PaymentOrderDetails {
+  orderId: string;
+  merchantOrderId?: string;
+  amount: number;
+  state: 'COMPLETED' | 'FAILED' | 'PENDING';
+  errorCode?: string;
+  detailedErrorCode?: string;
+}
+
+function PaymentResultContent() {
   const searchParams = useSearchParams();
-  const [orderDetails, setOrderDetails] = useState<any>(null);
+  const [orderDetails, setOrderDetails] = useState<PaymentOrderDetails | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -202,5 +213,22 @@ export default function PaymentResult() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function PaymentResult() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading...</p>
+          </div>
+        </div>
+      }
+    >
+      <PaymentResultContent />
+    </Suspense>
   );
 }
