@@ -16,6 +16,27 @@ export const metadata: Metadata = {
   title: 'PhonePe Payment Gateway | Next.js Integration',
   description:
     'Secure payment processing with PhonePe Payment Gateway integration built with Next.js, TypeScript, and modern React UI',
+  openGraph: {
+    title: 'PhonePe Payment Gateway | Next.js Integration',
+    description:
+      'Secure payment processing with PhonePe Payment Gateway integration built with Next.js, TypeScript, and modern React UI',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'PhonePe Payment Gateway Integration with Next.js',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PhonePe Payment Gateway | Next.js Integration',
+    description:
+      'Secure payment processing with PhonePe Payment Gateway integration built with Next.js, TypeScript, and modern React UI',
+    images: ['/og.png'],
+  },
 };
 
 export default function RootLayout({
