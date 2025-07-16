@@ -31,20 +31,15 @@ cp .env.example .env.local
 Required environment variables:
 
 ```env
-# PhonePe Payment Gateway Configuration
+# PhonePe Payment Gateway Configuration (Required)
 PHONEPE_CLIENT_ID=your_client_id
 PHONEPE_CLIENT_SECRET=your_client_secret
 PHONEPE_ENVIRONMENT=SANDBOX
-PHONEPE_CALLBACK_URL=http://localhost:3000/api/phonepe/callback
 PHONEPE_REDIRECT_URL=http://localhost:3000/payment/result
-PHONEPE_REDIRECT_MODE=REDIRECT
 
-# Next.js App URL
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-
-# Callback Configuration (Optional - for webhook validation)
-PHONEPE_CALLBACK_USERNAME=your_callback_username
-PHONEPE_CALLBACK_PASSWORD=your_callback_password
+# Optional Configuration (for webhook validation)
+PHONEPE_CALLBACK_USERNAME=your_callback_username  # Optional, defaults to 'default'
+PHONEPE_CALLBACK_PASSWORD=your_callback_password  # Optional, defaults to 'default'
 ```
 
 ### 3. Get PhonePe Credentials & Configure Webhooks
@@ -161,15 +156,13 @@ src/
 
 ```env
 PHONEPE_ENVIRONMENT=SANDBOX
-PHONEPE_CALLBACK_URL=http://localhost:3000/api/phonepe/callback
-PHONEPE_REDIRECT_URL=http://localhost:3000/payment/success
+PHONEPE_REDIRECT_URL=http://localhost:3000/payment/result
 ```
 
 ### Production
 
 ```env
 PHONEPE_ENVIRONMENT=PRODUCTION
-PHONEPE_CALLBACK_URL=https://yourdomain.com/api/phonepe/callback
 PHONEPE_REDIRECT_URL=https://yourdomain.com/payment/result
 ```
 
@@ -208,23 +201,21 @@ Update your PhonePe dashboard webhook URL to the ngrok URL.
 ### Common Issues
 
 1. **Stuck on Payment Screen**:
-   - Configure callback URL in PhonePe Business Dashboard under **Developer Settings** → **Webhook**
    - Ensure redirect URL is properly set and accessible
    - Check that your domain is whitelisted with PhonePe
 
 2. **SDK Import Error**: Make sure you're importing from `pg-sdk-node`
 3. **Environment Variables**: Check that all required variables are set
 4. **Amount Format**: Ensure amounts are in the correct format (paisa)
-5. **Webhook Validation**: Verify callback username/password configuration
+5. **Webhook Validation**: Optional - configure callback username/password if needed
 
 ### Payment Screen Issues
 
 If you're stuck on the payment screen:
 
-1. **Check PhonePe Dashboard**: Ensure webhook URLs are configured
-2. **Verify Redirect URL**: Must be accessible and properly formatted
-3. **Check Environment**: Ensure you're using correct SANDBOX/PRODUCTION settings
-4. **Domain Whitelisting**: Your domain must be registered with PhonePe
+1. **Verify Redirect URL**: Must be accessible and properly formatted
+2. **Check Environment**: Ensure you're using correct SANDBOX/PRODUCTION settings
+3. **Domain Whitelisting**: Your domain must be registered with PhonePe
 
 ### Debug Mode
 
