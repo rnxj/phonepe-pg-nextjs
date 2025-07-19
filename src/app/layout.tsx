@@ -73,6 +73,8 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: SITE_NAME,
+        type: 'image/png',
+        secureUrl: SITE_IMAGE.replace('http:', 'https:'),
       },
     ],
   },
@@ -81,6 +83,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     images: [SITE_IMAGE],
+    creator: '@rnxj',
   },
   robots: {
     index: true,
@@ -136,6 +139,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <meta property="og:image" content={SITE_IMAGE} />
+        <meta
+          property="og:image:secure_url"
+          content={SITE_IMAGE.replace('http:', 'https:')}
+        />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={SITE_NAME} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
